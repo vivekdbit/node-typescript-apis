@@ -1,13 +1,12 @@
 import {Request,Response,Router} from 'express';
 const expressRouter = Router();
-//import * as jwt from 'jsonwebtoken';
-//import * as bcrypt from 'bcrypt';
-//import {app} from '../../src/app'
+import {config} from '../config';
+import * as bcrypt from 'bcrypt';
 import {Database} from '../models/database';
 //import {ObjectID} from 'mongodb';
 
 // Validations Middleware
-//const {ValidationLogin,validationErrorHandler} = require("../middleware")
+import {ValidationLogin,ValidationErrorHandlder} from '../middleware';
 
 export class ApiLoginSignup{
     dataRouter:any; 
@@ -15,12 +14,12 @@ export class ApiLoginSignup{
         this.dataRouter = expressRouter;
 
         this.dataRouter.post("/signup", 
-        //ValidationLogin.signupValidator(), 
-        //validationErrorHandler.handleErrors, 
+        ValidationLogin.signupValidator(), 
+        ValidationErrorHandlder.handleErrors, 
         async (req:Request, res:Response) => {
 
             let dat = req.body;
-            //dat.password = bcrypt.hashSync(dat.password, app.get('saltRounds'));
+            dat.password = bcrypt.hashSync(dat.password, config.get('bcryptSaltRounds'));
             dat.created_at = new Date();
 
             const writeParams = {

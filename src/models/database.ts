@@ -1,5 +1,4 @@
 import {MongoClient} from 'mongodb';
-//const MongoClient = require('mongodb').MongoClient;
 
 export class Database {
 
@@ -18,6 +17,19 @@ export class Database {
             const db = conn.db(this.db);
             const collection = db.collection(writeParams.collection);
             const docs = await collection.insertOne(writeParams.criteria,writeParams.projection);
+            return docs;
+        } catch (e){
+            throw e;
+        }
+    }
+
+    async readOne(readParams:any){
+        try{
+            const conn = await this.client.connect();
+            const db = conn.db(this.db);
+            const collection = db.collection(readParams.collection);
+            const docs = await collection
+                               .findOne(readParams.criteria,readParams.projection);
             return docs;
         } catch (e){
             throw e;

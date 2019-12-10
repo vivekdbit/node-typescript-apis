@@ -5,10 +5,10 @@ describe("API Specs Test Suite", ()=>{
 
     test("/POST /Signup should create user", async done=>{
         const response = await request(app).post("/auth/signup").send({
-            "first_name" : "vivek 1",
-            "last_name"	 : "R 1",
-            "email"		 : "vivek13ss33@r.com",
-            "mobile"	 : "9867254452",
+            "first_name" : "Vivek",
+            "last_name"	 : "R",
+            "email"		 : "vive31@ras.com",
+            "mobile"	 : "9867254450",
             "password"	: "12345"
         })
         const {status,body} = response
