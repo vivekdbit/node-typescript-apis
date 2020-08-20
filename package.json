@@ -28,7 +28,7 @@
     "@types/express-validator": "^3.0.0",
     "@types/jsonwebtoken": "^8.3.5",
     "@types/mongodb": "^3.3.12",
-    "bcrypt": "^3.0.7",
+    "bcrypt": "^5.0.0",
     "convict": "^5.2.0",
     "express": "^4.17.1",
     "express-validator": "^6.3.0",
